@@ -22,7 +22,7 @@ const Student = db.define("student", {
     allowNull: false
   },
 
-  url: {
+  imageurl: {
     type: Sequelize.STRING,
     allowNull: true
   },
