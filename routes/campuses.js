@@ -65,5 +65,18 @@ router.put('/:id', ash(async(req, res) => {
   res.status(201).json(campus);  // Status code 201 Created - successful creation of a resource
 }))
 
+/* REMOVE STUDENT */
+router.put('/remove/:id', ash(async(req, res) => {
+  const {campusId, id} = req.body
+  await Campus.findOne({
+    where: { id: campusId }
+}).then(course => {   
+    course.removeStudents([id])
+})
+  // Find student by Primary Key
+  let student = await Student.findByPk(req.params.id);
+  res.status(201).json(student);  // Status code 201 Created - successful creation of a resource
+}));
+
 // Export router, so that it can be imported to construct the apiRouter (app.js)
 module.exports = router;
