@@ -67,7 +67,11 @@ router.put('/:id', ash(async(req, res) => {
 
 /* REMOVE STUDENT */
 router.put('/remove/:id', ash(async(req, res) => {
+  //extract campus id and student id from request
   const {campusId, id} = req.body
+
+  //search for matching campus id within the Campuses table
+  //then remove that campus's association with the student identified by the student id
   await Campus.findOne({
     where: { id: campusId }
 }).then(course => {   
